@@ -1,0 +1,52 @@
+#include <iostream>
+#include <clocale>
+#include <ctime>
+using namespace std;
+
+void ScanArray(int arr[][20], int m, int n) //Заполнение массива
+{
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			arr[i][j] = rand();
+		}
+	}
+}
+
+void PrintArray(int arr[][20], int m, int n) //Вывод массива
+{
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << arr[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+int min_mn(int arr[][20], int m, int n, int min) //Поиск минимального элемента
+{
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (min > arr[i][j]) {
+				min = arr[i][j];
+			}
+		}
+	}
+	return min;
+}
+
+int main() {
+	srand(time(0));
+	setlocale(LC_ALL, "ru");
+	int Arr[20][20], M, N, MIN;
+
+	cout << "Кол - во строк: ";
+	cin >> M;
+	cout << "Кол-во столбцов: ";
+	cin >> N;
+	
+	ScanArray(Arr, M, N);
+	MIN = Arr[0][0];
+	PrintArray(Arr, M, N);
+	cout << "Минимальное значение: "<< min_mn(Arr, M, N, MIN) << endl;
+	return 0;
+}
